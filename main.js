@@ -68,134 +68,6 @@ app.use(bodyParser.json());
 var jsonParser = bodyParser.json();
 dbopearions.initDB();
 
-/*
-router.get("/user/:id", function (req, res) {
-res.setHeader('Content-Type', 'application/json');
-return new Promise(function (resolver, rej) {
-
-dbopearions.getUserAsync(req.params.id).then(function (row) {
-console.log("GET USER BY ID");
-console.log(row);
-//res.json(row);
-
-res.end(JSON.stringify(row));
-
-}, function (err) {
-rej(err);
-}).catch (function (e) {
-rej(e);
-});
-
-});
-
-});
-
-router.get("/company/:id", function (req, res) {
-res.setHeader('Content-Type', 'application/json');
-return new Promise(function (resolver, rej) {
-
-dbopearions.getCompanyAsync(req.params.id).then(function (row) {
-console.log("GET COMPANY BY ID");
-console.log(row);
-res.end(JSON.stringify(row));
-
-}, function (err) {
-rej(err);
-}).catch (function (e) {
-rej(e);
-});
-
-});
-
-});
-
-router.get("/event/:companyid", function (req, res) {
-res.setHeader('Content-Type', 'application/json');
-return new Promise(function (resolver, rej) {
-
-dbopearions.getEventAsync(req.params.companyid).then(function (row) {
-console.log("GET EVENY BY COMPANY ID");
-console.log(row);
-
-res.end(JSON.stringify(row));
-
-}, function (err) {
-rej(err);
-}).catch (function (e) {
-rej(e);
-});
-
-});
-
-});
-
-router.post("/user/add/:username/:passkey/:companyid", function (req, res) {
-
-res.setHeader('Content-Type', 'application/json');
-return new Promise(function (resolver, rej) {
-obj = new Object();
-obj.name = req.params.username;
-obj.passkey = req.params.passkey;
-obj.companyid = req.params.companyid;
-dbopearions.insertUserAsync(obj).then(function (row) {
-console.log("ADDED EVENY WITH ID");
-console.log(row);
-res.end(JSON.stringify(row));
-
-}, function (err) {
-rej(err);
-}).catch (function (e) {
-rej(e);
-});
-
-});
-
-});
-
-router.post("/company/add/:companyname", function (req, res) {
-
-res.setHeader('Content-Type', 'application/json');
-return new Promise(function (resolver, rej) {
-obj = new Object();
-obj.name = req.params.companyname;
-
-dbopearions.insertCompanyAsync(obj).then(function (row) {
-console.log("ADDED COMPANY WITH ID");
-console.log(row);
-res.end(JSON.stringify(row));
-
-}, function (err) {
-rej(err);
-}).catch (function (e) {
-rej(e);
-});
-
-});
-
-});
-
-router.post("/event/add/:eventname/:companyid", function (req, res) {
-
-res.setHeader('Content-Type', 'application/json');
-return new Promise(function (resolver, rej) {
-obj = new Object();
-obj.name = req.params.eventname;
-obj.companyid = req.params.companyid;
-dbopearions.insertEventAsync(obj).then(function (row) {
-console.log("ADDED EVENY WITH ID");
-console.log(row);
-res.end(JSON.stringify(row));
-
-}, function (err) {
-rej(err);
-}).catch (function (e) {
-rej(e);
-});
-
-});
-
-});
- */
 
 var rootevent = router.route("/events");
 
@@ -224,7 +96,9 @@ rootevent.post(jsonParser, function (req, res) {
 	res.setHeader('Content-Type', 'application/json');
 	return new Promise(function (resolver, rej) {
 		obj = new Object();
-		obj.name = req.body.eventname;
+		obj.name = req.body.event_name;
+		obj.start_date = req.body.start_date;
+		obj.end_date= req.body.end_date;
 		obj.companyid = req.body.companyid;
 
 		dbopearions.insertEventAsync(obj).then(function (row) {
@@ -249,8 +123,10 @@ rooteventbyid.put(jsonParser, function (req, res) {
 	return new Promise(function (resolver, rej) {
 		obj = new Object();
 		obj.id = req.params.id;
-		obj.name = req.body.eventname;
-
+		obj.name = req.body.event_name;
+		obj.start_date = req.body.start_date;
+		obj.end_date= req.body.end_date;
+		
 		dbopearions.updateEventAsync(obj).then(function (row) {
 			console.log("UPDATE EVENT");
 			console.log(row);
@@ -337,7 +213,7 @@ rootuser.post(jsonParser, function (req, res) {
 	res.setHeader('Content-Type', 'application/json');
 	return new Promise(function (resolver, rej) {
 		obj = new Object();
-		obj.name = req.body.username;
+		obj.name = req.body.user_name;
 		obj.passkey = req.body.passkey;
 		obj.companyid = req.body.companyid;
 
@@ -364,7 +240,7 @@ rootuserbyid.put(jsonParser, function (req, res) {
 
 		obj = new Object();
 		obj.id = req.params.id;
-		obj.name = req.body.username;
+		obj.name = req.body.user_name;
 		obj.passkey = req.body.passkey;
 
 		dbopearions.updateUserAsync(obj).then(function (row) {
@@ -451,7 +327,7 @@ rootcompany.post(jsonParser, function (req, res) {
 	res.setHeader('Content-Type', 'application/json');
 	return new Promise(function (resolver, rej) {
 		obj = new Object();
-		obj.name = req.body.companyname;
+		obj.name = req.body.company_name;
 
 		dbopearions.insertCompanyAsync(obj).then(function (row) {
 			console.log("ADDED COMPANY");
@@ -475,7 +351,7 @@ rootcompanybyid.put(jsonParser, function (req, res) {
 	return new Promise(function (resolver, rej) {
 		obj = new Object();
 		obj.id = req.params.id;
-		obj.name = req.body.companyname;
+		obj.name = req.body.company_name;
 
 		dbopearions.updateCompanyAsync(obj).then(function (row) {
 			console.log("UPDATE COMPANY");
