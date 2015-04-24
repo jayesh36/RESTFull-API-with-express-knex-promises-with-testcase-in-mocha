@@ -1,17 +1,20 @@
 var json = require('json');
 var path = require('path');
+var config = require('config');
 var auth = require('basic-auth');
 var express = require('express');
 var Promise = require('bluebird');
 var dbopearions = require('./dboperations.js');
 var bodyParser = require('body-parser');
+var dbConfig = config.get('Global.dbConfig');
+
 var knex = Promise.promisifyAll(require('knex')({
-			client : 'mysql',
+			client : dbConfig.client,
 			connection : {
-				host : '127.0.0.1',
-				user : 'root',
-				password : '',
-				database : 'testdb'
+				host : dbConfig.host,
+				user : dbConfig.user,
+				password : dbConfig.password,
+				database : dbConfig.database
 			}
 		}));
 var app = express();
