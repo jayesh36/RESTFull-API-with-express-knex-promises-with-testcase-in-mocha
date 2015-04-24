@@ -233,6 +233,8 @@ describe('dbop', function () {
 		.set('accept', 'application/json')
 		.send({
 			"event_name" : "testCase",
+			"start_date" : "2012/05/05",
+			"end_date" : "2012/05/15",
 			"companyid" : recentcompany
 		})
 		.expect(200) //Status code
@@ -262,7 +264,8 @@ describe('dbop', function () {
 		.set('accept', 'application/json')
 		.send({
 			"event_name" : "NewtestCase",
-			"companyid" : recentcompany
+			"start_date" : "2012/05/15",
+			"end_date" : "2012/05/25"
 		})
 		.expect(200) //Status code
 		.end(function (err, res) {

@@ -205,8 +205,9 @@ module.exports.updateEventAsync = function (event) {
 		knex('events').update({
 
 			event_name : event.name,
-start_date : event.start_date,
-					end_date:event.end_date
+			start_date : event.start_date,
+			end_date:event.end_date
+			
 		}).where('id', event.id).then(function (result) {
 
 			resolve(event);
