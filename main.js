@@ -48,14 +48,7 @@ app.use(function (req, res, next) {
 			rej(e);
 		});
 	}
-	/*
-	if (user === undefined || user['name'] !== 'username' || user['pass'] !== 'password') {
-	res.statusCode = 401;
-	res.setHeader('WWW-Authenticate', 'Basic realm="et3ebs6126a"');
-	res.end('Unauthorized');
-	} else {
-	next();
-	}*/
+	
 });
 
 app.use("/", router);
@@ -78,7 +71,7 @@ rootevent.get(function (req, res) {
 
 	res.setHeader('Content-Type', 'application/json');
 	return new Promise(function (resolver, rej) {
-
+		debugger;
 		dbopearions.getAllEventAsync().then(function (row) {
 			console.log("GET ALL EVENTS");
 			console.log(row);
@@ -103,7 +96,7 @@ rootevent.post(jsonParser, function (req, res) {
 		obj.start_date = req.body.start_date;
 		obj.end_date= req.body.end_date;
 		obj.companyid = req.body.companyid;
-
+		debugger;
 		dbopearions.insertEventAsync(obj).then(function (row) {
 			console.log("ADDED EVENT");
 			console.log(row);
@@ -129,7 +122,7 @@ rooteventbyid.put(jsonParser, function (req, res) {
 		obj.name = req.body.event_name;
 		obj.start_date = req.body.start_date;
 		obj.end_date= req.body.end_date;
-		
+		debugger;
 		dbopearions.updateEventAsync(obj).then(function (row) {
 			console.log("UPDATE EVENT");
 			console.log(row);
@@ -150,7 +143,7 @@ rooteventbyid.get(jsonParser, function (req, res) {
 	return new Promise(function (resolver, rej) {
 		obj = new Object();
 		obj.id = req.params.id;
-
+		debugger;
 		dbopearions.getEventAsync(obj).then(function (row) {
 			console.log("GET EVENT BY ID");
 			console.log(row);
@@ -171,7 +164,7 @@ rooteventbyid.delete (jsonParser, function (req, res) {
 	return new Promise(function (resolver, rej) {
 		obj = new Object();
 		obj.id = req.params.id;
-
+		debugger;
 		dbopearions.deleteEventAsync(obj).then(function (row) {
 			console.log("DELETE EVENT BY ID");
 			console.log(row);
@@ -195,7 +188,7 @@ rootuser.get(function (req, res) {
 
 	res.setHeader('Content-Type', 'application/json');
 	return new Promise(function (resolver, rej) {
-
+		debugger;
 		dbopearions.getAllUserAsync().then(function (row) {
 			console.log("GET ALL USERS");
 			console.log(row);
@@ -219,7 +212,7 @@ rootuser.post(jsonParser, function (req, res) {
 		obj.name = req.body.user_name;
 		obj.passkey = req.body.passkey;
 		obj.companyid = req.body.companyid;
-
+		debugger;
 		dbopearions.insertUserAsync(obj).then(function (row) {
 			console.log("ADDED USER");
 			console.log(row);
@@ -245,7 +238,7 @@ rootuserbyid.put(jsonParser, function (req, res) {
 		obj.id = req.params.id;
 		obj.name = req.body.user_name;
 		obj.passkey = req.body.passkey;
-
+		debugger;
 		dbopearions.updateUserAsync(obj).then(function (row) {
 			console.log("UPDATE USER");
 			console.log(row);
@@ -266,7 +259,7 @@ rootuserbyid.get(jsonParser, function (req, res) {
 	return new Promise(function (resolver, rej) {
 		obj = new Object();
 		obj.id = req.params.id;
-
+		debugger;
 		dbopearions.getUserAsync(obj).then(function (row) {
 			console.log("GET USER BY ID");
 			console.log(row);
@@ -287,7 +280,7 @@ rootuserbyid.delete (jsonParser, function (req, res) {
 	return new Promise(function (resolver, rej) {
 		obj = new Object();
 		obj.id = req.params.id;
-
+		debugger;
 		dbopearions.deleteUserAsync(obj).then(function (row) {
 			console.log("DELETE USER BY ID");
 			console.log(row);
@@ -309,7 +302,7 @@ rootcompany.get(function (req, res) {
 
 	res.setHeader('Content-Type', 'application/json');
 	return new Promise(function (resolver, rej) {
-
+		debugger;
 		dbopearions.getAllCompanysAsync().then(function (row) {
 			console.log("GET ALL COMPANYS");
 			console.log(row);
@@ -331,7 +324,7 @@ rootcompany.post(jsonParser, function (req, res) {
 	return new Promise(function (resolver, rej) {
 		obj = new Object();
 		obj.name = req.body.company_name;
-
+		debugger;
 		dbopearions.insertCompanyAsync(obj).then(function (row) {
 			console.log("ADDED COMPANY");
 			console.log(row);
@@ -355,7 +348,7 @@ rootcompanybyid.put(jsonParser, function (req, res) {
 		obj = new Object();
 		obj.id = req.params.id;
 		obj.name = req.body.company_name;
-
+		debugger;
 		dbopearions.updateCompanyAsync(obj).then(function (row) {
 			console.log("UPDATE COMPANY");
 			console.log(row);
@@ -376,7 +369,7 @@ rootcompanybyid.get(jsonParser, function (req, res) {
 	return new Promise(function (resolver, rej) {
 		obj = new Object();
 		obj.id = req.params.id;
-
+		debugger;
 		dbopearions.getCompanyAsync(obj).then(function (row) {
 			console.log("GET COMPANY BY ID");
 			console.log(row);
@@ -397,7 +390,7 @@ rootcompanybyid.delete (jsonParser, function (req, res) {
 	return new Promise(function (resolver, rej) {
 		obj = new Object();
 		obj.id = req.params.id;
-
+		debugger;
 		dbopearions.deleteCompanyAsync(obj).then(function (row) {
 			console.log("DELETE COMPANY BY ID");
 			console.log(row);
@@ -420,7 +413,7 @@ rootcompanybyid.get(jsonParser, function (req, res) {
 	return new Promise(function (resolver, rej) {
 		obj = new Object();
 		obj.id = req.params.id;
-
+		debugger;
 		dbopearions.getCompanyEventAsync(obj).then(function (row) {
 			console.log("GET COMPANY Events BY comapany ID");
 			console.log(row);
@@ -443,7 +436,7 @@ rootcompanybyid.get(jsonParser, function (req, res) {
 	return new Promise(function (resolver, rej) {
 		obj = new Object();
 		obj.id = req.params.id;
-
+		debugger;
 		dbopearions.getCompanyUserAsync(obj).then(function (row) {
 			console.log("GET COMPANY Users BY comapany ID");
 			console.log(row);

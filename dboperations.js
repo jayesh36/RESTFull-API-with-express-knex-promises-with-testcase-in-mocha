@@ -48,6 +48,8 @@ module.exports.initDB = function () {
 				t.increments('id').primary();
 				t.string('user_name', 100);
 				t.string('passkey', 500);
+			}).then(function(){
+			return knex('users').insert({user_name: 'testUser', passkey: encrypt('passkey')});
 			});
 		}
 	});
