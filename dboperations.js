@@ -48,6 +48,8 @@ module.exports.initDB = function () {
 				t.increments('id').primary();
 				t.string('user_name', 100);
 				t.string('passkey', 500);
+			}).then(function(){
+			return knex('users').insert({user_name: 'testUser', passkey: encrypt('passkey')});
 			});
 		}
 	});
@@ -84,7 +86,9 @@ module.exports.initDB = function () {
 			return knex.schema.createTable('events', function (t) {
 				t.increments('id').primary();
 				t.string('event_name', 100);
-
+				t.date('start_date');
+				t.date('end_date');
+				t.timestamps();
 			});
 		}
 	});
@@ -145,7 +149,9 @@ module.exports.insertEventAsync = function (event) {
 			if (row.length > 0) {
 				knex('events').insert({
 
-					event_name : event.name
+					event_name : event.name,
+					start_date : event.start_date,
+					end_date:event.end_date
 
 				}).then(function (result) {
 					newevent.id = result[0];
@@ -200,8 +206,10 @@ module.exports.updateEventAsync = function (event) {
 
 		knex('events').update({
 
-			event_name : event.name
-
+			event_name : event.name,
+			start_date : event.start_date,
+			end_date:event.end_date
+			
 		}).where('id', event.id).then(function (result) {
 
 			resolve(event);

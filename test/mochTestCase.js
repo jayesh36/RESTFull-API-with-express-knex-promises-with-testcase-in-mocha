@@ -68,7 +68,7 @@ describe('dbop', function () {
 		.set("Authorization", "basic " + new Buffer("TESTUS:passkey").toString("base64"))
 		.set('accept', 'application/json')
 		.send({
-			"username" : "testUser",
+			"user_name" : "testUser",
 			"passkey" : "testKey",
 			"companyid" : "10"
 		})
@@ -100,7 +100,7 @@ describe('dbop', function () {
 		.set("Authorization", "basic " + new Buffer("TESTUS:passkey").toString("base64"))
 		.set('accept', 'application/json')
 		.send({
-			"companyname" : "TESTCASE"
+			"company_name" : "TESTCASE"
 		})
 		.expect(200) //Status code
 		.end(function (err, res) {
@@ -128,7 +128,7 @@ describe('dbop', function () {
 		.set("Authorization", "basic " + new Buffer("TESTUS:passkey").toString("base64"))
 		.set('accept', 'application/json')
 		.send({
-			"username" : "testUserNewName",
+			"user_name" : "testUserNewName",
 			"passkey" : "testKey",
 			"companyid" : recentcompany
 		})
@@ -189,7 +189,7 @@ describe('dbop', function () {
 		.set("Authorization", "basic " + new Buffer("TESTUS:passkey").toString("base64"))
 		.set('accept', 'application/json')
 		.send({
-			"companyname" : "NEWTESTCASE"
+			"company_name" : "NEWTESTCASE"
 		})
 		.expect(200) //Status code
 		.end(function (err, res) {
@@ -232,7 +232,9 @@ describe('dbop', function () {
 		.set("Authorization", "basic " + new Buffer("TESTUS:passkey").toString("base64"))
 		.set('accept', 'application/json')
 		.send({
-			"eventname" : "testCase",
+			"event_name" : "testCase",
+			"start_date" : "2012/05/05",
+			"end_date" : "2012/05/15",
 			"companyid" : recentcompany
 		})
 		.expect(200) //Status code
@@ -261,8 +263,9 @@ describe('dbop', function () {
 		.set("Authorization", "basic " + new Buffer("TESTUS:passkey").toString("base64"))
 		.set('accept', 'application/json')
 		.send({
-			"eventname" : "NewtestCase",
-			"companyid" : recentcompany
+			"event_name" : "NewtestCase",
+			"start_date" : "2012/05/15",
+			"end_date" : "2012/05/25"
 		})
 		.expect(200) //Status code
 		.end(function (err, res) {
